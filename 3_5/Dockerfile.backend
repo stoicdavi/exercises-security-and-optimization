@@ -1,0 +1,22 @@
+# use here COPY 1_13 .
+FROM golang:1.27.3
+
+WORKDIR /src/usr/app
+
+ENV PORT=8080
+COPY code/example-backend .
+
+ENV REQUEST_ORIGIN=http://localhost:5001
+
+RUN go build -o server
+
+RUN useradd -m serveruser
+
+RUN chown serveruser .
+USER serveruser
+
+ENV REDIS_PORT=6379
+
+EXPOSE 8080
+
+CMD ["./server"]
