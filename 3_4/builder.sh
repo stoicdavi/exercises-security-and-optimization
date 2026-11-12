@@ -12,7 +12,7 @@ elif [ "$1" != "" ]; then
 	else
 		echo "Repository cloned successfully into $(basename "$1" .git)"
 		cd "$(basename "$1" .git)"
-		docker login
+                printf '%s\n' "$DOCKER_PWD" | docker login --username "$DOCKER_USER" --password-stdin
 		docker build -t "$2" .
 		if [ $? -ne 0 ]; then
 			echo "Failed to build Docker image"
