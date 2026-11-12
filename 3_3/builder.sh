@@ -5,7 +5,7 @@ if [ "$#" -ne 2 ]; then
 	exit 1
 elif [ "$1" != "" ]; then
 	echo "Cloning the repository ...."
-	git clone "$1"
+	git clone "https://github.com/$1.git"
 	if [ $? -ne 0 ]; then
 		echo "Failed to clone repository"
 		exit 1
