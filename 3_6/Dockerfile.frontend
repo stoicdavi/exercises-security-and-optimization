@@ -4,14 +4,14 @@ WORKDIR /src/usr/app
 
 COPY code/example-frontend .
 
+ENV REACT_APP_BACKEND_URL=http://localhost:8080
+
 RUN apt-get update && apt-get install -y curl ca-certificates && curl -fsSL https://deb.nodesource.com/setup_16.x -o /tmp/node_setup.sh \
     && bash /tmp/node_setup.sh \
     && apt-get install -y nodejs \
     && npm install && npm run build && npm install -g serve \
     && useradd -m appuser && chown appuser .
     
-ENV REACT_APP_BACKEND_URL=http://localhost:8080
-
 USER appuser
 
 EXPOSE 5001
