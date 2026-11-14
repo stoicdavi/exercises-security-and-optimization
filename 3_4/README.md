@@ -7,7 +7,7 @@ This container clones a public GitHub repository, builds its Docker image, and p
 - Docker Engine on a Linux host
 - Network access to GitHub and Docker Hub
 - A public GitHub repository containing a `Dockerfile`
-- A Docker Hub account and access token with permission to push the target image
+- A Docker Hub account with permission to push the target image
 
 The container needs access to a Docker daemon to build and push images. The Dockerfile replaces the base image's default entrypoint, so it does not start the `dind-rootless` daemon itself. The command below mounts the host Docker socket instead. **A container with access to this socket can control the host's Docker daemon.**
 
@@ -21,16 +21,16 @@ docker build -t github-image-builder .
 
 ## Set Docker Hub credentials
 
-Use a Docker Hub access token rather than your account password:
+Enter your Docker Hub username and account password when prompted:
 
 ```sh
 export DOCKER_USER="your-dockerhub-username"
-read -rsp "Docker Hub access token: " DOCKER_PWD
+read -rsp "Docker Hub password: " DOCKER_PWD # This will prompt you to input the password, but it will not display it as you type
 printf '\n'
 export DOCKER_PWD
 ```
 
-The token is passed to the container as an environment variable. Avoid putting it directly in the `docker run` command or committing it to a file in this project.
+The password is passed to the container as an environment variable and sent to `docker login` through standard input. Avoid putting it directly in the `docker run` command or committing it to a file in this project. If your Docker Hub account uses two-factor authentication or rejects password-based login, use a personal access token instead.
 
 ## Run
 
