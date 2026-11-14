@@ -15,6 +15,6 @@ The frontend keeps its Ubuntu base image, but combines its package setup, depend
 Run these commands from the repository root so the Dockerfiles can access the `code/` directory:
 
 ```sh
-docker build -f 3_6/Dockerfile.backend -t exercise-3-6-backend .
-docker build -f 3_6/Dockerfile.frontend -t exercise-3-6-frontend .
+docker build -f 3_6/Dockerfile.backend -t exercise-3-6-backend ..
+docker build -f 3_6/Dockerfile.frontend -t exercise-3-6-frontend ..
 ```

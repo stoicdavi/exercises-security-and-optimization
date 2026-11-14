@@ -7,8 +7,8 @@ This exercise updates the example backend and frontend Dockerfiles to run their 
 Run these commands from the repository root. The Dockerfiles copy application code from the repository's `code/` directory, so the build context must be the repository root:
 
 ```sh
-docker build -f 3_5/Dockerfile.backend -t exercise-3-5-backend .
-docker build -f 3_5/Dockerfile.frontend -t exercise-3-5-frontend .
+docker build -f 3_5/Dockerfile.backend -t exercise-3-5-backend ..
+docker build -f 3_5/Dockerfile.frontend -t exercise-3-5-frontend ..
 ```
 
 ## Run the applications
